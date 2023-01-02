@@ -9,7 +9,6 @@ export const useImageStore=  defineStore('ImageStore',{
     }),
     actions:{
         async getImage(value){
-            console.log(import.meta.env.VITE_apiKey)
             const configuration = new Configuration({
                 apiKey: import.meta.env.VITE_apiKey,
             });              
