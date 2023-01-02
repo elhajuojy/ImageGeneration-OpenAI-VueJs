@@ -9,9 +9,9 @@ export const useImageStore=  defineStore('ImageStore',{
     }),
     actions:{
         async getImage(value){
-            console.log(value)
+            console.log(import.meta.env.VITE_apiKey)
             const configuration = new Configuration({
-                apiKey: "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",
+                apiKey: import.meta.env.VITE_apiKey,
             });              
             const openai = new OpenAIApi(configuration);
               this.image = await openai.createImage({
