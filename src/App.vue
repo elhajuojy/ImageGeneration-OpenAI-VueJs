@@ -17,10 +17,10 @@ var prompt = ref();
 <template>
     <div class="container">
         <main>
-            <h2 class="container">Image generation</h2>
+            <h1 class="container">Image generation</h1>
             <LoadingIndicator v-if="disabled" />
-            <div class="img">
-                <img :src="ImageStore.data" alt="">
+            <div class="imgs-container">
+                <img v-for="img in ImageStore.data " :src="img.url" alt="">
             </div>
         </main>
         <footer>
@@ -41,7 +41,19 @@ var prompt = ref();
 </template>
 
 <style scoped>
-
+h1{
+    font-size: 3rem;
+}
+.imgs-container{
+    width: 100%;
+    overflow-x: hidden;
+    display:  grid;
+    justify-content: space-around;
+    justify-items: center;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    gap: 20px;
+    height: 80vh;
+}
 .img{
     width: 800px;
 }
