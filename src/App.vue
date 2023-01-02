@@ -6,12 +6,12 @@ import {useImageStore} from "./stores/ImageStore"
 import { onMounted } from 'vue';
 const ImageStore  = useImageStore();
 const disabled =ref(false);
-const state = ref("... ")
+const state = ref("Generate An Image 🪷")
 
 
 async function search(){
-
     disabled.value = true;
+    ImageStore.data = null;
     state.value = "Loading ..."
     try{
         await ImageStore.getImage(prompt.value); 
