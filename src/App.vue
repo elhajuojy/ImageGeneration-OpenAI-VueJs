@@ -48,7 +48,6 @@ var prompt = ref();
                         autofocus
                         @keyup.enter="search()"
                     />
-        
                     <button @click="search()">Send</button>
                 </div>
         </footer>
