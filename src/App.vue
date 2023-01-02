@@ -5,10 +5,22 @@ import { initCustomFormatter, ref } from 'vue';
 import {useImageStore} from "./stores/ImageStore"
 import { onMounted } from 'vue';
 const ImageStore  = useImageStore();
+const disabled =ref(false);
+const state = ref("... ")
 
-// onMounted(() => {
-//     ImageStore.getImage("dog")
-// });
+
+async function search(){
+
+    disabled.value = true;
+    state.value = "Loading ..."
+    try{
+        await ImageStore.getImage(prompt.value); 
+        disabled.value = false;
+    }
+    catch(err){
+        console.log(err);
+    }
+}
 
 var prompt = ref();
 
@@ -19,9 +31,12 @@ var prompt = ref();
         <main>
             <h1 class="container">Image generation</h1>
             <LoadingIndicator v-if="disabled" />
-            <div class="imgs-container">
-                <img v-for="img in ImageStore.data " :src="img.url" alt="">
-            </div>
+                <div class="imgs-container" v-if="ImageStore.data">
+                    <img v-for="img in ImageStore.data " :src="img.url" alt="">
+                </div>
+                <div class="div-loading" v-else>
+                    <p>{{state}}</p>
+                </div>
         </main>
         <footer>
                 <div class="results-input" ref="promptElement">
@@ -31,10 +46,10 @@ var prompt = ref();
                         v-model="prompt"
                         :disabled="disabled"
                         autofocus
-                        @keyup.enter="ImageStore.getImage(prompt)"
+                        @keyup.enter="search()"
                     />
         
-                    <button @click="ImageStore.getImage(prompt)">Send</button>
+                    <button @click="search()">Send</button>
                 </div>
         </footer>
     </div>
@@ -44,7 +59,7 @@ var prompt = ref();
 h1{
     font-size: 3rem;
 }
-.imgs-container{
+.imgs-container,.div-loading{
     width: 100%;
     overflow-x: hidden;
     display:  grid;
@@ -53,6 +68,10 @@ h1{
     grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
     gap: 20px;
     height: 80vh;
+}
+.div-loading{
+    display: grid;
+    align-items: center;
 }
 .img{
     width: 800px;

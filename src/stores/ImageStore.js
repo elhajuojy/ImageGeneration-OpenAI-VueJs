@@ -11,9 +11,9 @@ export const useImageStore=  defineStore('ImageStore',{
         async getImage(value){
             console.log(value)
             const configuration = new Configuration({
-                apiKey: "",
-              });              
-              const openai = new OpenAIApi(configuration);
+                apiKey: "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",
+            });              
+                const openai = new OpenAIApi(configuration);
               this.image = await openai.createImage({
                   prompt: value,
                   n: 4,
@@ -24,8 +24,5 @@ export const useImageStore=  defineStore('ImageStore',{
         }
     },
     getters:{
-        favs(){
-            return this.tasks.filter(t=>t.isFav)
-        }
     }
 })
