@@ -13,7 +13,7 @@ export const useImageStore=  defineStore('ImageStore',{
             const configuration = new Configuration({
                 apiKey: "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",
             });              
-                const openai = new OpenAIApi(configuration);
+            const openai = new OpenAIApi(configuration);
               this.image = await openai.createImage({
                   prompt: value,
                   n: 4,
