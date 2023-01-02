@@ -1,6 +1,7 @@
 # imagegeneration
 
-![snipts](https://user-images.githubusercontent.com/86893073/210247479-d931a565-12d7-4b3b-8672-49f226c1d795.png)
+
+![screen](https://user-images.githubusercontent.com/86893073/210273720-1bcd6265-4653-4702-be23-36081d5ed9db.jpg)
 
 This template should help get you started developing with Vue 3 in Vite.
 
