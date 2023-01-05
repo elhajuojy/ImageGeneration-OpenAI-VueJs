@@ -32,7 +32,9 @@ var prompt = ref();
             <h1 class="container">Image generation</h1>
             <LoadingIndicator v-if="disabled" />
                 <div class="imgs-container" v-if="ImageStore.data">
-                    <img v-for="img in ImageStore.data " :src="img.url" alt="">
+                   <transition-group appear name="list" >
+                        <img v-for="img in ImageStore.data " :key="img.url" :src="img.url" alt="">
+                   </transition-group>
                 </div>
                 <div class="div-loading" v-else>
                     <p>{{state}}</p>
@@ -55,6 +57,37 @@ var prompt = ref();
 </template>
 
 <style scoped>
+.list-enter-from{
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  
+  .list-enter-to{
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  .list-enter-active{
+    transition: all 0.4s ease;
+  }
+  .list-leave-from{
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  .list-leave-to{
+    opacity: 0;
+    transform: scale(1);
+  }
+  
+  .list-leave-active{
+   /* position: absolute;*/
+    transition: all 0.4s ease;
+    position: absolute;
+  }
+  .list-move{
+    transition: all 0.3s ease;
+  }
 h1{
     font-size: 3rem;
 }
